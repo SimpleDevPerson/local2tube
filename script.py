@@ -24,7 +24,7 @@ def main():
 
 
     for filename in filenames:
-        if not filename.endswith(".lrc"):
+        if not filename.endswith(".lrc") and not filename.endswith(".txt"):
             search_results = ytmusic.search(query=filename, filter="songs", limit=1)
             f = open("risultato.txt", "w")
             f.write(str(search_results).encode("cp1252", errors="replace").decode("cp1252"))

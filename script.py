@@ -11,10 +11,15 @@ id_add_list = []
 songs_add_list = []
 
 def main():
+
+    print("You can find your playlist id at the end of the playlist url, after list=")
+    playlist_id = input("Enter playlist id: ")
     oScreen = curses.initscr()
     curses.noecho()
     curses.curs_set(0)
     oScreen.keypad(1)
+    oScreen.scrollok(1)
+    oScreen.idlok(True)
 
     curses.start_color()
     curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_CYAN)
@@ -66,7 +71,7 @@ def main():
 
 
     try:
-        ytmusic.add_playlist_items(playlistId="PLpeP0ekIOKjCBCLxGBaBXgybyH8gkFEGb", videoIds=id_add_list, duplicates=False)
+        ytmusic.add_playlist_items(playlistId=playlist_id, videoIds=id_add_list, duplicates=False)
         print("Done!")
         exit()
     except Exception:

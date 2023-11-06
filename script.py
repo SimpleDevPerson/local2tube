@@ -12,8 +12,13 @@ songs_add_list = []
 
 def main():
 
-    print("You can find your playlist id at the end of the playlist url, after list=")
-    playlist_id = input("Enter playlist id: ")
+    if "playlistid.txt" in str(os.listdir(".")):
+        playlist_id = open("playlistid.txt", "r").readline()
+        print("Found playlist id" + playlist_id + " in current directory, proceeding")
+    else:
+        print("You can find your playlist id at the end of the playlist url, after list=")
+        playlist_id = input("Enter playlist id: ")
+    
     oScreen = curses.initscr()
     curses.noecho()
     curses.curs_set(0)

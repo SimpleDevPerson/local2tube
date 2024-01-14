@@ -32,12 +32,15 @@ def main():
     curses.init_pair(3, curses.COLOR_GREEN, 0)
     curses.init_pair(4, curses.COLOR_RED, 0)
 
-    song_number = 0
+    current_song = 0
+    total_songs = 0
 
     for filename in filenames:
         if not filename.endswith(".lrc") and not filename.endswith(".txt"):
-            song_number += 1
-            total_songs = len(filenames)
+            total_songs += 1
+
+    for filename in filenames:
+        if not filename.endswith(".lrc") and not filename.endswith(".txt"):
             
             search_results = ytmusic.search(query=filename, filter="songs", limit=1)
             f = open("risultato.txt", "w")
@@ -57,14 +60,15 @@ def main():
             oScreen.addstr("/", curses.A_BOLD)
             oScreen.addstr("n" + "\n", curses.color_pair(4))
             oScreen.addstr("\n")
-            oScreen.addstr("Song number: " + str(song_number) + "/" + str(total_songs) + "\n")
+            oScreen.addstr("Song number: " + str(current_song) + "/" + str(total_songs) + "\n")
             song_string = str(songs_add_list).encode("cp1252", errors="replace").decode("cp1252")
-            oScreen.addstr("Added songs:" + "\n" + str(songs_add_list).encode("cp1252", errors="replace").decode("cp1252")[len(str(songs_add_list)) - 100:] + "\n")
+            oScreen.addstr("Added songs:" + "\n" + str(songs_add_list).encode("cp1252", errors="replace").decode("cp1252")[len(str(songs_add_list)) - 1000:] + "\n")
             
             oEvent = oScreen.getch()
             if oEvent == ord("y"):
                 id_add_list.append(search_results[0]["videoId"])
                 songs_add_list.append(info)
+                current_song += 1
                 os.rename("Music/" + filename, "Out/" + filename)
                 oScreen.addstr("Added!\n\n")
                 oScreen.clear()
@@ -73,6 +77,12 @@ def main():
                 oScreen.addstr("Not added!\n")
                 oScreen.clear()
                 oScreen.refresh()
+            elif oEvent == ord("q"):
+                exit()
+            elif oEvent == 3:
+                exit()
+            elif KeyboardInterrupt:
+                exit()
             else:
                 pass
                 

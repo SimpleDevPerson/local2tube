@@ -1,7 +1,7 @@
 *.mp3
 *.lrc
 oauth.json
-risultato.txt
+result.txt
 playlistid.txt
 
 # Byte-compiled / optimized / DLL files

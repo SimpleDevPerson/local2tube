@@ -43,9 +43,9 @@ def main():
         if not filename.endswith(".lrc") and not filename.endswith(".txt"):
             
             search_results = ytmusic.search(query=filename, filter="songs", limit=1)
-            f = open("risultato.txt", "w")
-            f.write(str(search_results).encode("cp1252", errors="replace").decode("cp1252"))
-            f.close()
+            # f = open("result.txt", "w")
+            # f.write(str(search_results).encode("cp1252", errors="replace").decode("cp1252"))
+            # f.close()
 
 
             oScreen.addstr("File: " + "\n", curses.color_pair(1))
@@ -89,6 +89,11 @@ def main():
 
         else:
             pass
+
+
+    f = open("results.txt", "w")
+    f.write(str(id_add_list).encode("cp1252", errors="replace").decode("cp1252"))
+    f.close()
 
 
     try:

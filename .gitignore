@@ -1,5 +1,6 @@
 *.mp3
 *.lrc
+*.flac
 oauth.json
 result.txt
 playlistid.txt
